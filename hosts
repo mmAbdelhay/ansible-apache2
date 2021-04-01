@@ -1,0 +1,4 @@
+ubuntu_clienthost ansible_host=192.168.1.33 ansible_user=administrator ansible_password=OnlyMe88 ansible_become_pass=OnlyMe88
+
+[ABDELHAYGROUP]
+ubuntu_clienthost
