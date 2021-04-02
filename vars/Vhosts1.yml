@@ -1,0 +1,6 @@
+---
+app_user: "administrator"
+http_host: "saleh"
+http_conf: "saleh.conf"
+http_port: "80"
+disable_default: true

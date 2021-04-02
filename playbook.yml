@@ -1,53 +1,21 @@
-##################################################
-# DO Community Playbooks: Apache on Ubuntu 18.04
-##################################################
 ---
 - hosts: all
   become: true
-  vars_files:
-    - Vhosts.yml
 
-  tasks:
-    - name: Install prerequisites
-      apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
-      loop: [ 'aptitude' ]
+- name: install first playbook 
+  import_playbook: template.yml
+  vars: 
+    app_user: "administrator"
+    http_host: "muhammad"
+    http_conf: "muhammad.conf"
+    http_port: "80"
+    disable_default: true
 
-    - name: Install Apache
-      apt: name=apache2 update_cache=yes state=latest
-
-    - name: install firewalld
-      ansible.builtin.package:
-        name: firewalld
-        state: present
-
-    - name: Create document root
-      file:
-        path: "/var/www/html/{{ http_host }}"
-        state: directory
-        owner: "{{ app_user }}"
-        mode: '0755'
-
-    - name: Copy index test page
-      template:
-        src: "files/index.html"
-        dest: "/var/www/html/{{ http_host }}/index.html"
-
-    - name: Set up Apache virtualhost
-      template:
-        src: "files/apache.conf"
-        dest: "/etc/apache2/sites-available/{{ http_conf }}"
-
-    - name: Enable new site
-      shell: /usr/sbin/a2ensite {{ http_conf }}
-      notify: Reload Apache
-
-    - name: "UFW - Allow HTTP on port {{ http_port }}"
-      ufw:
-        rule: allow
-        port: "{{ http_port }}"
-        proto: tcp
-
-  handlers:
-    - name: Reload Apache
-      ansible.builtin.service:
-        name: apache2
+- name: install second playbook
+  import_playbook: template.yml
+  vars:
+    app_user: "administrator"
+    http_host: "abdelhay"
+    http_conf: "abdelhay.conf"
+    http_port: "80"
+    disable_default: true
