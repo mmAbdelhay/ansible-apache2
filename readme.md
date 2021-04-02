@@ -1,7 +1,7 @@
 # Apache on Ubuntu 20.04
 
-This playbook will install the Apache 2 web server on 2 ubuntu different machines, jusy type 
-ansiblw-playbook -i hosts playbook.yml
+This playbook will install the Apache 2 web server and adding 2 virtual hosts on 2 ubuntu different machines, jusy type 
+$ ansible-playbook -i hosts playbook.yml
 
 
 ## Settings
