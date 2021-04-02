@@ -1,6 +1,0 @@
----
-app_user: "administrator"
-http_host: "ahmed"
-http_conf: "ahmed.conf"
-http_port: "80"
-disable_default: true
